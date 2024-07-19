@@ -8,7 +8,7 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.email
 
 class Group(models.Model):

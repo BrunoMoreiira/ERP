@@ -5,15 +5,17 @@ from accounts.serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-class Sigin(Base):
+class Signin(Base):  # Corrigido para Signin
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
 
         user = Authentication.signin(self, email=email, password=password)
 
-        token = RefreshToken.for_user(user)
+        if not user:
+            return Response({"detail": "Invalid credentials"}, status=401)
 
+        token = RefreshToken.for_user(user)
         enterprise = self.get_enterprise_user(user.id)
 
         serializer = UserSerializer(user)
@@ -21,6 +23,7 @@ class Sigin(Base):
         return Response({
             'user': serializer.data,
             'enterprise': enterprise,
-            'refresh': token.refresh,
-            'access_token': token.access_token 
+            'refresh': str(token),  
+            'access': str(token.access_token)  
         })
+
