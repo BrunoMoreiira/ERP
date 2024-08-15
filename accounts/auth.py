@@ -39,9 +39,9 @@ class Authentication:
         password_hashed = make_password(password)
 
         created_user = user.objects.create(
+            name=name,
             email=email,
             password=password_hashed,
-            name=name,
             is_owner=0 if type_account == 'employee' else 1,
         )
 
@@ -52,7 +52,6 @@ class Authentication:
             )
         if type_account == 'employee':
             Employee.objects.create(
-                name='Nome do funcionário',
                 user_id=created_user.id,
                 enterprise_id=company_id or created_enterprise.id
             )

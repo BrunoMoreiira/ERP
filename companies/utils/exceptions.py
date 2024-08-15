@@ -5,7 +5,7 @@ class NotFoundEmployee(APIException):
     default_detail = 'Funcionario não encontrado.'
     default_code = 'not_found_employee'
 
-class NorFoundGroup(APIException):
+class NotFoundGroup(APIException):
     status_code = 404
     default_detail = 'Grupo não encontrado.'
     default_code = 'not_found_group'
