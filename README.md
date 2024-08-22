@@ -1,16 +1,5 @@
 # 💻📱 Sistema de Gestão Empresarial (ERP)
-
-Neste curso mergulhamos a fundo na construção de um Sistema de Gestão Empresarial completo utilizando tecnologias de última geração: ReactJS e Django Rest Framework.
-
-
-## ⛏️ Instalação
-
-Execute o projeto com Python
-
-```bash
-  py manage.py runserver
-```
-    
+  
 ## 💎 Stacks utilizadas
 
 **Front-end:** ReactJS, TypeScript, React-Router, Redux, Material UI, Axios
