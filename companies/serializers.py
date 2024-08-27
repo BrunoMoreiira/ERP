@@ -6,8 +6,8 @@ from accounts.models import User_Groups, User, Group, GroupPermission
 from django.contrib.auth.models import Permission
 
 class EmployeesSerializer(serializers.ModelSerializer):
-    name = serializers.SerializerMethodField()
-    email = serializers.SerializerMethodField()
+    name = serializers.CharField(source='user.name')
+    email = serializers.EmailField(source='user.email')
 
 
     class Meta:
@@ -98,7 +98,7 @@ class TaskSerializer(serializers.ModelSerializer):
             'id',
             'title',
             'description',
-            'due_date'
+            'due_date',
             'created_at',
             'status'
         )
@@ -106,7 +106,7 @@ class TaskSerializer(serializers.ModelSerializer):
     def get_status(self, obj):
         return obj.status.name
 
-class TaskSerializer (serializers.ModelSerializer):
+class TasksSerializer (serializers.ModelSerializer):
     status = serializers.SerializerMethodField()
     employee = serializers.SerializerMethodField()
 
@@ -116,9 +116,9 @@ class TaskSerializer (serializers.ModelSerializer):
             'id',
             'title',
             'description',
-            'due_date'
+            'due_date',
             'created_at',
-            'status'
+            'status',
             'employee'
         )
     
